@@ -39,6 +39,9 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['username', 'password'], 'required'],
             [['create_date'], 'safe'],
             [['username', 'password'], 'string', 'max' => 40],
+            [['username', 'password'], 'string', 'min' => 6],
+            // [['password_repeat'], 'required'],
+            // [['password_repeat'], 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
             [['username'], 'unique']
         ];
     }
@@ -71,14 +74,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
     {
         return $this->hasOne(UdemyAutomationUserMetadata::className(), ['user_id' => 'id']);
     }
-
-    // public function getUserByUsernameAndPassword($username, $password)
-    // {
-    //     return Yii::$app->db->createCommand("SELECT username, password FROM " . User::tableName() . " where username=:username and password=:password")
-    //         ->bindValue(":username", $username)
-    //         ->bindValue(":password", md5($password))
-    //         ->queryOne();
-    // }
 
 
     /** INCLUDE USER LOGIN VALIDATION FUNCTIONS**/

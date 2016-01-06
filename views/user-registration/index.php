@@ -20,6 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
         <?= $form->field($model, 'username') ?>
         <?= $form->field($model, 'password') ?>
+        <?= $form->field($model, 'password_repeat')->textInput()->label("Confirm Password") ?>
     
         <div class="form-group">
             <?= Html::submitButton('Submit', ['class' => 'btn btn-primary']) ?>

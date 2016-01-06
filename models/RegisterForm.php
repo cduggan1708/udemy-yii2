@@ -12,6 +12,7 @@ class RegisterForm extends Model
 {
     public $username;
     public $password;
+    public $password_repeat;
 
     private $_user = false;
 
@@ -23,9 +24,10 @@ class RegisterForm extends Model
     {
         return [
             // username and password are both required
-            [['username', 'password'], 'required'],
-            // password is validated by validatePassword()
-            //['password', 'validatePassword'],
+            [['username', 'password', 'password_repeat'], 'required'],
+            [['username', 'password', 'password_repeat'], 'string', 'max' => 40],
+            [['username', 'password', 'password_repeat'], 'string', 'min' => 6],
+            [['password_repeat'], 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
         ];
     }
 
