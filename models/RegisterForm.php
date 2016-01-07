@@ -23,7 +23,6 @@ class RegisterForm extends Model
     public function rules()
     {
         return [
-            // username and password are both required
             [['username', 'password', 'password_repeat'], 'required'],
             [['username', 'password', 'password_repeat'], 'string', 'max' => 40],
             [['username', 'password', 'password_repeat'], 'string', 'min' => 6],

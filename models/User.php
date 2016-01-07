@@ -40,8 +40,6 @@ class User extends \yii\db\ActiveRecord implements \yii\web\IdentityInterface
             [['create_date'], 'safe'],
             [['username', 'password'], 'string', 'max' => 40],
             [['username', 'password'], 'string', 'min' => 6],
-            // [['password_repeat'], 'required'],
-            // [['password_repeat'], 'compare', 'compareAttribute'=>'password', 'message'=>"Passwords don't match" ],
             [['username'], 'unique']
         ];
     }
