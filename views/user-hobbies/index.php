@@ -15,48 +15,6 @@ $this->params['breadcrumbs'][] = $this->title;
 #hobby {display: none;}
 </style>
 
-<script type="text/javascript" language="javascript">
-
-function showHobbies(clicked){
-  if(!clicked) {
-    document.getElementById('hobby').style.cssText='display:none';
-    document.getElementById('hobby_btn').style.cssText='display:block';
-  }
-  else {
-    document.getElementById('hobby').style.cssText='display:block';
-    document.getElementById('hobby_btn').style.cssText='display:none';
-  }
-}
-
-function addHobby(){
-  var hobby_item = document.getElementById('source');
-  var hobby = hobby_item.value;
-
-  if(hobby) {
-  	$.ajax( //jquery ajax request
-  	{
-  		url: "index.php?r=user-hobbies/index",
-  		type: "POST",
-  		data: "hobby=" + hobby,
-  		success: function(response) {
-  			var count = (response.match(/failed/g) || []).length;
-  			if(count <= 0) {
-	          document.getElementById("hobby_item").innerHTML += "<li>" + response + "</li>";
-	          document.getElementById('hobby_btn').innerHTML = "Add Another Hobby";
-	          showHobbies(false);
-	        }
-	        else {
-	          showHobbies(false);
-	        }
-  		}
-  	});
-  }
-  else {
-    showHobbies(false);
-  }
-}
-
-</script>
 
 <div class="user-hobbies-index">
 
@@ -114,4 +72,47 @@ if (isset($_POST['hobby'])) { // adding a new hobby functionality (called from A
 ?>
 
 </div>
+
+<script type="text/javascript" language="javascript">
+
+function showHobbies(clicked){
+  if(!clicked) {
+    $('#hobby').style.cssText='display:none';
+    $('#hobby_btn').style.cssText='display:block';
+  }
+  else {
+    $('#hobby').style.cssText='display:block';
+    $('#hobby_btn').style.cssText='display:none';
+  }
+}
+
+function addHobby(){
+  var hobby_item = document.getElementById('source');
+  var hobby = hobby_item.value;
+
+  if(hobby) {
+  	$.ajax( //jquery ajax request
+  	{
+  		url: "index.php?r=user-hobbies/index",
+  		type: "POST",
+  		data: "hobby=" + hobby,
+  		success: function(response) {
+  			var count = (response.match(/failed/g) || []).length;
+  			if(count <= 0) {
+	          $('#hobby_item').innerHTML += "<li>" + response + "</li>";
+	          $('#hobby_btn').innerHTML = "Add Another Hobby";
+	          showHobbies(false);
+	        }
+	        else {
+	          showHobbies(false);
+	        }
+  		}
+  	});
+  }
+  else {
+    showHobbies(false);
+  }
+}
+
+</script>
 
